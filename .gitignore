@@ -1,7 +1,7 @@
 syntax: glob
 
-cantailme/settings/local.py
-media/
-static/
+/cantailme/settings/local.py
+/media/
+/static/
 *.pyc
 *~
