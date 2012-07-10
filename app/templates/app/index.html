@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>How-to tail?</h1>
+    <h2>Install App</h2>
+    <h4>In ubuntu:</h4>
+    <p>In ubuntu you need to add ppa repository and install package</p>
+    <pre class='example'>
+sudo add-apt-repository nvbn-rm/ppa
+sudo apt-get update
+sudo apt-get install tailme</pre>
+    <h4>In other Linux</h4>
+    <p>In other linux distros you can manualy build package or install via pip</p>
+    <pre class='example'>
+pip install -e git+https://github.com/nvbn/cantailme-client.git#egg=tailme</pre>
+    <h2>Use It</h2>
+    <p>You only need run app with tailme pipe, and session page open in your browser!</p>
+    <pre class='example'>
+do-long-app | tailme</pre>
+    <p>Or you can use silent mode and copy link from terminal</p>
+    <pre class='example'>
+do-long-app | tailme --silent</pre>
+    <h1>About CanTail.Me</h1>
+    <p>This is simple servise for providing tail -f over network.</p>
+    <p>Or you can use it like paste service alternative with terminal integration.</p>
+    <p>It's free software and you can get <a href='http://github.com/nvbn/cantailme-client'>client</a> and <a href='http://github.com/nvbn/cantailme-server'>server</a> side source from github.</p>
+{% endblock %}

@@ -1,0 +1,7 @@
+syntax: glob
+
+cantailme/settings/local.py
+media/
+static/
+*.pyc
+*~

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ session.title }}
+{% endblock %}
+
+{% block content %}
+    <script src="http://cdn.sockjs.org/sockjs-0.3.min.js"></script>
+    <script type='text/javascript'>
+       $(function() {
+          var sock = new SockJS('http://' + window.location.host + '/assync/');
+          $.fx.off = true;
+          sock.onopen = function() {
+              sock.send('{{ session.hash }}');
+          };
+          $.ajax({url: '{{ session.log_file_url}}'}).done(function(data){
+              $('pre').prepend(data);
+              sock.onmessage = function(e) {
+                  $('pre').append(e.data);
+                  $('html, body').animate({scrollTop:$(document).height()}, 'fast');
+              };
+          });
+      });
+    </script>
+    <h1>{{ session.title }}</h1>
+    
+    <pre class='tile'></pre>
+{% endblock %}
