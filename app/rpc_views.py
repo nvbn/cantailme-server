@@ -5,7 +5,11 @@ from app.models import TailSession
 @jsonrpc_method('create_session() -> str')
 def create_session(request):
     """Create tail session"""
-    return TailSession.objects.create().hash
+    session = TailSession.objects.create()
+    return {
+        'hash': session.hash,
+        'secret': session.secret,
+    }
 
 
 @jsonrpc_method('add_lines(hash=str, lines=list) -> bool')
