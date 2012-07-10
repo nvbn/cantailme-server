@@ -98,6 +98,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.admindocs',
     'gunicorn',
+    'django_evolution',
     'jsonrpc',
     'app',
     'assync',

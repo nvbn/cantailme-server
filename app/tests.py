@@ -7,7 +7,7 @@ class TailTest(TestCase):
         session = TailSession.objects.create()
         res = ''
         for i in range(1000):
-            session.add([str(i)])
+            session.add(str(i))
             res += str(i) + '\n'
         self.assertEqual(
             session.content, res,

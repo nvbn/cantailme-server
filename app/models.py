@@ -4,6 +4,7 @@ from django.conf import settings
 from hashlib import sha1
 from itertools import imap
 from assync.client import sender
+from random import randint
 import os.path
 import codecs
 
@@ -12,6 +13,7 @@ class TailSession(models.Model):
     """Tail session"""
     title = models.CharField(max_length=300, verbose_name=_('title'))
     hash = models.CharField(max_length=8, unique=True, verbose_name=_('hash'))
+    secret = models.CharField(max_length=8, verbose_name=_('secret key'))
 
     def save(self, *args, **kwargs):
         """Save with hash generation"""
@@ -20,6 +22,9 @@ class TailSession(models.Model):
             while not self.hash or TailSession.objects.filter(hash=self.hash).count():
                 key += '1'
                 self.hash = sha1(key).hexdigest()[:8]
+            self.secret = sha1(
+                self.hash + str(randint(0, 1000)),
+            ).hexdigest()[:8]
             if not self.title:
                 self.title = 'Tail session %s' % self.hash
             with open(self.log_file_path, 'w'):
