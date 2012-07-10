@@ -2,5 +2,6 @@ django
 django-json-rpc
 django-annoying
 stormed
+gunicorn
 -e git+https://github.com/facebook/tornado.git#egg=tornado
 -e git+https://github.com/mrjoes/sockjs-tornado.git#egg=sockjs_tornado
